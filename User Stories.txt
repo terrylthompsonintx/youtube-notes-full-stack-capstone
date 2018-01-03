@@ -1,0 +1,17 @@
+You Notes
+(You Tube Notes)
+
+This app will allow the user to search for videos on you tube.  
+
+The app will allow the user to select and view a video within the app.
+
+The app will allow the user to take notes and store them.  
+
+The app will allow the user to come back and view their notes.  
+
+The notes will include date and time and have a link to the video. 
+
+The user will be able to add new notes.  
+
+THe app will allow the user to delete notes on a video.  
+
