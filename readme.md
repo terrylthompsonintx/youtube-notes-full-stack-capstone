@@ -39,7 +39,7 @@ The purpose of this app is to view a video and take notes from YouTube.
 ![Skills word cloud screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap5.png)
 ![Skills word cloud screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap6.png)
 ## Working Prototype
-Find a working prototype with Node at https://shopping-list-node-capstone.herokuapp.com/ .
+Find a working prototype with Node at https://youtube-notes-capstone.herokuapp.com/ and a working prototype with React at ??? .
 
 ## Functionality
 * When the user brings up the landing page and it explains the pupose of the app.
