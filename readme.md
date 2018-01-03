@@ -18,18 +18,16 @@ The purpose of this app is to view a video and take notes from YouTube.
 
 
 # User Stories
-* As a user I want to quickly understand the purpose of the site in order to use it to create a shopping list.
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/1.png)
-* As a user I want to be able to search for recipes in order to find the ingredients to add to the shoppng list.
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/2.png)
-* As a user I want to select a recipe and assign it to a day of the week in order to view the recipe for that day.
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/3.png)
-* As a user I want to aggregate ingredients to a shopping list and view as a web page in order create the meal.
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/4.png)
-* As a user I want to be able to delete items from the shopping list that I already have so I dont spend unnecassarily.
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/5.png)
-* As a user I want to be able to delete the shopping list and menu once I am finished.
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/6.png)
+* As a user I want to quickly understand the purpose of the site in order to use it to view and take notes.
+![Landing page screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/home-page.png)
+* As a user I want to search for YouTube videos from which I can learn.
+![Landing page screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/search-page.png)
+* As a user I want to be view a video and take notes in order to retain knowledge.
+![Landing page screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/new-project-page.png)
+* As a user I want to select a previous project and edit or delete it.
+![Landing page screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/previous-note-index-page.png)
+
+
 
 ## Screenshots
 ![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap1.png)
