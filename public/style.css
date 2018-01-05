@@ -2,6 +2,7 @@ html {
     text-align: center;
     background-color: black;
     color: white;
+    font-family: 'Muli', sans-serif;
 }
 
 a {
@@ -12,9 +13,6 @@ a {
 a:link {
     color: white;
 }
-
-
-/* visited link */
 
 a:visited {
     color: white;
@@ -41,8 +39,7 @@ footer li img {
     width: 100px;
 }
 
-.button,
-.selectButton {
+.button {
     margin-top: 10px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -56,4 +53,20 @@ footer li img {
     font-size: 120%;
     padding: 5px 10px;
     border-radius: 5px;
+    background-color: black;
+    color: aliceblue;
+    width: 200px
+}
+
+footer {
+    padding-top: 20px;
+}
+
+iframe {
+    padding-top: 60px;
+}
+
+textarea {
+    width: 600px;
+    height: 330px;
 }

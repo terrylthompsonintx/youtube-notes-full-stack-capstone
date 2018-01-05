@@ -6,22 +6,49 @@
     <title>YouTubeNotes</title>
     <link rel="stylesheet" href="rows.css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
 </head>
 
 
 <body>
-    <header>
+    <header class='col-12'>
         <a href="index.html" class='button ' target='_self'><img class='homeButton' src="images/youtube-logo.jpg" alt="Image of YouTube Notes Logo"></a>
     </header>
     <article class='col-12'>
-        <form action="">
-            <label for="">Enter a subject to for which to search:</label>
-            <input id='searchFor' type="text">
-            <button type="button" id='searchButton'>Search</button>
-        </form>
+
+        <p>Enter a subject for which to search:</p>
+        <input id='searchFor' type="text" width: 200px>
+        <button type="button" id='searchButton' class='button'>Search</button>
+
     </article>
-    <artiicle id='viewSearchReturn'></artiicle>
+    <article class='c0l-12' id='searchResult'>
+        <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt=""><button class='button'>Select</button></div>
+        <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt=""><button class='button'>Select</button></div>
+        <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt=""><button class='button'>Select</button></div>
+        <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt=""><button class='button'>Select</button></div>
+
+    </article>
+    <article><button class='button' id='previousVideos'>Previous Videos</button><button class='button' id='nextVideos'>Next Videos</button></article>
+
+    <footer class='col-12' id='contact'>
+
+        <p>&copy;Terry Thompson</p>
+        <ul>
+
+            <li>
+                <a href="https://github.com/terrylthompsonintx"><img src="images/mark-github.png" alt="Git Hub Logo"></a>
+            </li>
+            <li>
+                <a href='mailto:TerryLThompsonintx@gmail.com'><img src="images/email.png" alt="Email Logo"></a>
+            </li>
+            <li>
+                <a href='https://www.linkedin.com/in/terrylthompson/'><img src="images/th.jpg" alt="linked in  Logo"></a>
+            </li>
+        </ul>
+
+
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="client.js"></script>
