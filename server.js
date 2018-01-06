@@ -50,8 +50,16 @@ if (require.main === module) {
 }
 
 //routes
-app.get('/getyoutubedata/', (req, res) => {
-    console.log(req.body);
+app.get('/getyoutubedata', function (req, res) {
+    if (req.query.searchString) {
+
+
+    } else {
+        res.sendStatus(400)
+    }
+    //    console.log(req.query.searchString);
+    //    res.sendStatus(200);
+    //    console.log('route fired');
 
 
 
@@ -76,4 +84,4 @@ app.delete('/deletenote/:id', (req, res) => {});
 
 
 exports.app = app;
-//exports.runServer = runServer;
+exports.runServer = runServer;

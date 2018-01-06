@@ -12,10 +12,14 @@ function previousNotesOut() {
 }
 
 
-function sendSearchString(getSearchData) {
+function sendSearchString(searchData) {
+
     $.ajax({
             type: "GET",
-            url: '/getyoutubedata/' + getSearchData,
+            url: '/getyoutubedata/',
+            data: {
+                searchString: searchData
+            },
             dataType: 'json',
         })
         .done(function (dataOutput) {
@@ -38,6 +42,6 @@ function sendSearchString(getSearchData) {
 //Event Handlers
 $('#searchButton').on('click', function () {
     let searchString = $('#searchFor').val();
-    console.log(searchString);
+    console.log('eventhandler fired: ' + searchString)
     sendSearchString(searchString);
 })

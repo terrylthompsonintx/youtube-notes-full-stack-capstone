@@ -10,7 +10,7 @@ var youSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    videoDate: {
+    notes: {
         type: Array,
         required: false
     }
