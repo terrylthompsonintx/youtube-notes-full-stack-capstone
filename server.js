@@ -8,11 +8,25 @@ const app = express();
 app.use(express.static('public'));
 const bodyParser = require('body-parser');
 
-
-
-
 const youTubeSearchApiUrl = "https://www.googleapis.com/youtube/v3/search";
 const myGoogleKey = 'AIzaSyCHXrCpLMW0YYC6gQeu1jPxZZDwJwPEW3c';
+var runServer = function (callback) {
+    mongoose.connect(config.DATABASE_URL, function (err) {
+        if (err && callback) {
+            return callback(err);
+        }
+
+        app.listen(config.PORT, function () {
+            console.log('Listening on localhost:' + config.PORT);
+            if (callback) {
+                callback();
+            }
+        });
+    });
+};
+
+
+
 
 function callYouTube(subject, youTubeSearchApiUrl, myGoogleKey) {
     var query = {
@@ -24,6 +38,15 @@ function callYouTube(subject, youTubeSearchApiUrl, myGoogleKey) {
     }
     $.getJSON(youTubeSearchApiUrl, query, displayYoutube);
 };
+
+
+if (require.main === module) {
+    runServer(function (err) {
+        if (err) {
+            console.error(err);
+        }
+    });
+}
 
 
 app.get('/getyoutubedata/', (req, res) => {

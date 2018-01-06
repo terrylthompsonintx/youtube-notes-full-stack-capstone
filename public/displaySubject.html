@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>YouTubeNotes</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <link rel="stylesheet" href="rows.css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
 </head>
 
@@ -15,15 +16,23 @@
     <header class='col-12'>
         <a href="index.html" class='button' target='_self'><img class='homeButton' src="images/youtube-logo.jpg" alt="Image of YouTube Notes Logo"></a>
     </header>
+    <article class='col-12'>
+        <h2 id='youTubeName'>HTML and CSS Tutorial</h2>
+        <h3 id='videoUrl'>https://www.youtube.com/embed/y3UH2gAhwPI</h3>
+
+    </article>
     <artiicle class='col-6' id='viewSearchReturn'>
-        <iframe width='600px' height='400px' src="https://www.youtube.com/embed/y3UH2gAhwPI" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+        <iframe width='100%' height='400px' src="https://www.youtube.com/embed/y3UH2gAhwPI" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
     </artiicle>
     <article class='col-6'>
-        <p id='youTubeName'>HTML and CSS Tutorial</p>
-        <p id='videoUrl'>https://www.youtube.com/embed/y3UH2gAhwPI</p>
-        <p id=noteDate>1/5/2018</p>
+
         <textarea id="noteArea" id="youNote"></textarea><br>
-        <button id='saveNote' class='button'>Save this Note</button>
+
+    </article>
+    <article class='col-12'>
+        <button class='button' id='previousNotes'><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous  </button>
+        <button id='saveNote' class='button ctabutton'><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+
     </article>
     <footer class='col-12' id='contact'>
 

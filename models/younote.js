@@ -6,7 +6,7 @@ var youSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    videoUr;: {
+    videoUrl: {
         type: String,
         required: true
     },

@@ -1,8 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    /*The box-sizing property is used to tell the browser what the sizing properties (width and height) should include border-box.*/
+    box-sizing: border-box;
+    /*reset Chrome user agent styles*/
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-before: 0px;
+    -webkit-padding-after: 0px;
+    -webkit-padding-start: 0px;
+    -webkit-padding-end: 0px;
+}
+
 html {
     text-align: center;
-    background-color: black;
+    background-color: #b7b7b7;
     color: white;
     font-family: 'Muli', sans-serif;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+}
+
+#searchFor {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 a {
@@ -28,10 +57,7 @@ footer li {
     text-decoration: none''
 }
 
-footer li img {
-    width: auto;
-    max-height: 30px;
-    border: 1px solid;
+img {
     border-radius: 5px;
 }
 
@@ -47,26 +73,41 @@ footer li img {
     border: none;
     border-radius: 0;
     box-shadow: 0px 0px 20px #999;
-    background-image: url(images/button-bg.png);
     background-repeat: repeat-x;
     background-position: center;
     font-size: 120%;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: black;
+    background-color: aliceblue;
+    color: #353535;
+    width: 150px;
+}
+
+.button:hover {
+    background-color: #ccc;
+}
+
+.ctabutton {
+    background-color: #353535;
     color: aliceblue;
-    width: 200px
+}
+
+.ctabutton:hover {
+    background-color: black;
+}
+
+textarea {
+    width: 100%;
+    height: 400px;
 }
 
 footer {
     padding-top: 20px;
 }
 
-iframe {
-    padding-top: 60px;
-}
-
-textarea {
-    width: 600px;
-    height: 330px;
+footer li img {
+    width: auto;
+    max-height: 30px;
+    border: 1px solid;
+    border-radius: 5px;
 }
