@@ -1,32 +1,43 @@
 var d = new Date();
+
+
 // HTML Builder Functions
 
-function videoSearchOut(){
-
-}
-function previousNotesOut(){
+function videoSearchOut() {
 
 }
 
+function previousNotesOut() {
+
+}
 
 
+function sendSearchString(getSearchData) {
+    $.ajax({
+            type: "GET",
+            url: '/getyoutubedata/' + getSearchData,
+            dataType: 'json',
+        })
+        .done(function (dataOutput) {
+            console.log(dataOutput);
+            videoSearchOut(dataOutput);
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log('failed to get');
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+};
 
 
 
 
 
 //Event Handlers
-$('#searchIcon').on('click', function () {
-    //gets user search term
-    let searchString = $('#searchTerm').val();
-    let searchWeekDay = $('#recipeDay').val();
-    //console.log(searchString);
-    sendRecepiesSearch(searchString, searchWeekDay);
-
-    if (toggleHidden) {
-        //hides the Yummly logo and displays the search display.
-        toggleHidden = 0;
-        $('#searchBoxReturn').toggleClass("hidden");
-        $('#yLogo').toggleClass("hidden");
-    }
-});
+$('#searchButton').on('click', function () {
+    let searchString = $('#searchFor').val();
+    console.log(searchString);
+    sendSearchString(searchString);
+})

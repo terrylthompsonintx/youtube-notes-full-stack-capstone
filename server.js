@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-//var unirest = require('unirest');
+var unirest = require('unirest');
 var events = require('events');
 const mongoose = require('mongoose');
 var config = require('./config');
@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 
 const youTubeSearchApiUrl = "https://www.googleapis.com/youtube/v3/search";
 const myGoogleKey = 'AIzaSyCHXrCpLMW0YYC6gQeu1jPxZZDwJwPEW3c';
+
 var runServer = function (callback) {
     mongoose.connect(config.DATABASE_URL, function (err) {
         if (err && callback) {
@@ -48,11 +49,16 @@ if (require.main === module) {
     });
 }
 
-
+//routes
 app.get('/getyoutubedata/', (req, res) => {
+    console.log(req.body);
+
+
 
 
 });
+
+//get t
 app.get('/getyounote/id', (req, res) => {
 
 
