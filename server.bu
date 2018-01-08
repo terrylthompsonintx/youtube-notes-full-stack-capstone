@@ -8,11 +8,11 @@ const app = express();
 app.use(express.static('public'));
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-var you = require('./models/younote');
-var note = require('./models/younote');
 
-
-
+var $ = require('jQuery');
+var youTubeData;
+const youTubeSearchApiUrl = "https://www.googleapis.com/youtube/v3/search";
+const myGoogleKey = 'AIzaSyCHXrCpLMW0YYC6gQeu1jPxZZDwJwPEW3c';
 
 var runServer = function (callback) {
     mongoose.connect(config.DATABASE_URL, function (err) {
@@ -57,10 +57,16 @@ function callYouTube(subject, youTubeSearchApiUrl, myGoogleKey) {
 };
 
 var getYouTube = function (searchTerm) {
-
+    var query = {
+        type: 'video',
+        part: 'snippet',
+        maxResults: 12,
+        key: 'AIzaSyCHXrCpLMW0YYC6gQeu1jPxZZDwJwPEW3c',
+        q: searchTerm
+    }
     var emitter = new events.EventEmitter();
-
-    unirest.get("https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=12&key=AIzaSyCHXrCpLMW0YYC6gQeu1jPxZZDwJwPEW3c&q=" + searchTerm)
+    console.log("inside getFromActive function");
+    unirest.get("https://www.googleapis.com/youtube/v3/search" + JSON.stringify(query))
         .header("Accept", "application/json")
         .end(function (result) {
             console.log(result.status, result.headers, result.body);
@@ -78,9 +84,9 @@ var getYouTube = function (searchTerm) {
 };
 
 //routes
-app.get('/getyoutubedata/:search', function (req, res) {
-    console.log(req.params.search);
-    var searchReq = getYouTube(req.params.search);
+app.get('/getyoutubedata', function (req, res) {
+    console.log(req.query.searchString);
+    var searchReq = getYouTube(req.query.searchString);
     searchReq.on('end', function (item) {
         res.json(item);
     });
@@ -98,9 +104,7 @@ app.get('/getyounote/id', (req, res) => {
 
 
 });
-app.post('/younote/', (req, res) => {
-
-});
+app.post('/younote/', (req, res) => {});
 app.put('/younote/:id', (req, res) => {});
 app.delete('/deletenote/:id', (req, res) => {});
 

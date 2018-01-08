@@ -16,16 +16,94 @@
     <header class='col-12'>
         <img src="images/youtube-logo.jpg" alt="Image of YouTube Notes Logo">
     </header>
-    <article class='col-12'>
-        <h2 id='info'>This app allows you to search, view, and pause a YouTube Video while taking and saving notes.</h2>
-    </article>
-    <div class='col-6'><a href="newProject.html" class='button ctabutton' target='_self'><i class="fa fa-plus" aria-hidden="true"></i> New Project</a></div>
-    <div class='col-6'><a href="previousProject.html" class='button ctabutton' ctabutton><i class="fa fa-file-video-o" aria-hidden="true"></i> Old Projects</a></div>
-    <footer class='col-12' id='contact'>
 
+
+
+    <main class='home-page'>
+        <article class='col-12'>
+            <h2 id='info'>This app allows you to search, view, and pause a YouTube Video while taking and saving notes.</h2>
+        </article>
+        <div class='col-6'><button class='button ctabutton new-project'><i class="fa fa-plus" aria-hidden="true"></i> New Project</button></div>
+        <div class='col-6'><button class='button ctabutton old-project'><i class="fa fa-file-video-o" aria-hidden="true"></i> Old Projects</button></div>
+    </main>
+
+
+
+    <main class='display-subject-page'>
+        <article id='subjectHead' class='col-12'>
+        </article>
+        <artiicle class='col-6' id='viewSearchReturn'>
+        </artiicle>
+        <article class='col-6' id='youNoteaArea'>
+        </article>
+        <article class='col-12'>
+            <button class='button' id='previousNotes'><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous  </button>
+            <button id='saveNotebutton' class='button ctabutton'><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+
+        </article>
+    </main>
+
+
+
+    <main class='previous-proj'>
+        <article id='previousNotes' class='col-12'>
+            <article class='c0l-12' id='searchResult'>
+                <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt="">
+                    <p id='videoTitle'>Video Title</p>
+                    <p id='videoUrl'>Video URL</p>
+                    <button class='button'><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <br>
+                    <button class='button'><i class="fa fa-trash" aria-hidden="true"> </i> Delete</button>
+                </div>
+                <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt="">
+                    <p id='videoTitle'>Video Title</p>
+                    <p id='videoUrl'>Video URL</p>
+                    <button class='button'><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <br>
+                    <button class='button'><i class="fa fa-trash" aria-hidden="true"> </i> Delete</button>
+                </div>
+                <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt="">
+                    <p id='videoTitle'>Video Title</p>
+                    <p id='videoUrl'>Video URL</p>
+
+                    <button class='button'><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <br>
+                    <button class='button'><i class="fa fa-trash" aria-hidden="true"> </i> Delete</button>
+                </div>
+                <div class='col-3'><img src="images/youtube-logo.jpg" width=100% alt="">
+                    <p id='videoTitle'>Video Title</p>
+                    <p id='videoUrl'>Video URL</p>
+
+                    <button class='button'><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <br>
+                    <button class='button'><i class="fa fa-trash" aria-hidden="true"> </i> Delete</button>
+                </div>
+            </article>
+            <article><button class='button' id='previousNotes'><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous  </button><button class='button' id='nextNotes'>Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button></article>
+        </article>
+    </main>
+
+
+
+
+
+    <main class='newp-roj'>
+        <article class='col-12'>
+
+            <p>Enter a subject for which to search:</p>
+            <input id='searchFor' type="text" width: 200px>
+            <button type="button" id='searchButton' class='button'><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+        </article>
+        <article class='c0l-12' id='searchResult'>
+        </article>
+        <article><button class='button' id='previousNotes'><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous  </button><button class='button' id='nextNotes'>Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button></article>
+    </main>
+
+
+
+    <footer class='col-12' id='contact'>
         <p>&copy;Terry Thompson</p>
         <ul>
-
             <li>
                 <a href="https://github.com/terrylthompsonintx"><img src="images/mark-github.png" alt="Git Hub Logo"></a>
             </li>

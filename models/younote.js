@@ -2,6 +2,10 @@ var mongoose = require('mongoose');
 
 var youSchema = new mongoose.Schema({
 
+    videoId: {
+        type: string,
+        required: true
+    }
     videoName: {
         type: String,
         required: true
@@ -9,18 +13,12 @@ var youSchema = new mongoose.Schema({
     videoUrl: {
         type: String,
         required: true
-    },
-    notes: {
-        type: Array,
-        required: false
     }
-
-
-
-
 
 });
 
-var recipe = mongoose.model('younote', younoteSchema);
 
-module.exports = recipe;
+
+var you = mongoose.model('you', youSchema);
+
+module.exports = you;
