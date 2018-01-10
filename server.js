@@ -8,8 +8,8 @@ const app = express();
 app.use(express.static('public'));
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-var you = require('./models/younote');
-var note = require('./models/younote');
+var vidNote = require('./models/younote');
+
 
 
 
@@ -91,18 +91,57 @@ app.get('/getyoutubedata/:search', function (req, res) {
 
 })
 
-
-
-//get t
-app.get('/getyounote/id', (req, res) => {
-
-
-});
 app.post('/younote/', (req, res) => {
+    console.log(req.body);
+
+    vidNote.create({
+        vidId: req.body.vidUrl,
+        vidName: req.body.vidTitle,
+        vidDate: req.body.date,
+        videoNote: req.body.note,
+        vidPicUrl: req.body.pic
+    }, function (err, item) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.status(201).json(item);
+    });
+});
+
+
+
+app.get('/getyounote/', (req, res) => {
+    //console.log(req + 'getfired');
+    vidNote.find(function (err, item) {
+        console.log(item);
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.status(200).json(item);
+
+    });
+});
+
+app.delete('/deletenote/:id', (req, res) => {
+    vidNote.findByIdAndRemove(req.params.vidId, function (err, items) {
+        if (err)
+            return res.status(404).json({
+                message: 'Item not found.'
+            });
+
+        res.status(201).json(items);
+    });
 
 });
-app.put('/younote/:id', (req, res) => {});
-app.delete('/deletenote/:id', (req, res) => {});
+
+
+app.put('/younote/:id', (req, res) => {
+
+});
 
 
 

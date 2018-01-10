@@ -33,6 +33,33 @@ body {
     max-width: 1000px;
 }
 
+header {
+    position: relative
+}
+
+header .messageBox {
+    position: absolute;
+    top: 0px;
+    left: 40%;
+    background-color: #116466;
+    color: #fff;
+    padding: 10px 5%;
+    width: 30%;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+header .messageBox span,
+header .messageBox a {
+    color: #fff;
+}
+
+header .messageBox a {
+    cursor: pointer;
+    color: yellow;
+}
+
 .stubImage {
     padding-top: 20px;
     width: 100%;

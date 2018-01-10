@@ -1,17 +1,39 @@
 var d = new Date();
-
+var selectedVid = '';
+var selectedTitle = '';
 const youTubeSearchApiUrl = "https://www.googleapis.com/youtube/v3/search";
 const myGoogleKey = 'AIzaSyCHXrCpLMW0YYC6gQeu1jPxZZDwJwPEW3c';
 
+function displayError(message) {
+    $(".messageBox span").html(message);
+    $(".messageBox").fadeIn();
+    $(".messageBox").fadeOut(10000);
+};
 
+
+function unixTimestampInSecondsToAsiaDate(unixTimestampInSeconds) {
+    var a = new Date(unixTimestampInSeconds * 1000);
+    var year = a.getFullYear();
+    var month = (a.getMonth() + 1) < 10 ? '0' + (a.getMonth() + 1) : (a.getMonth() + 1);
+    var date = a.getDate() < 10 ? '0' + a.getDate() : a.getDate();
+    var time = year + '-' + month + '-' + date;
+    return time;
+}
 // HTML Builder Functions
-function displaysubjectpage(selectedVid, selectedTitle) {
+function displaysubjectpage(selectedVid, selectedTitle, pic) {
     console.log('fired');
+    console.log(pic);
+    $('main').hide();
+    $('.display-subject-page').show();
+
+
     var buildSubjectHtml = '';
     var buildvidhtml = '';
     var buildNote = '';
-    buildSubjectHtml += '<h2> ' + selectedTitle + '</h2>';
-    buildSubjectHtml += '<h3> ' + selectedVid + '</h3>';
+
+    buildSubjectHtml += '<h2 id="videoTitle"> ' + selectedTitle + '</h2>';
+    buildSubjectHtml += '<h3 id="videoUrl"> ' + selectedVid + '</h3>';
+    buildSubjectHtml += '<h4 id="thumbpic" class="hidden">' + pic + '</h4>';
     $("#subjectHead").html(buildSubjectHtml);
     buildvidhtml += '<iframe width="100%" height="400px" src="' + selectedVid + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
     $("#viewSearchReturn").html(buildvidhtml);
@@ -21,21 +43,22 @@ function displaysubjectpage(selectedVid, selectedTitle) {
 }
 
 function videoSearchOut(data) {
-    console.log(data);
+    //console.log(data);
     var buildTheHtmlOutput = "";
     $.each(data.items, function (videosArrayKey, videosArrayValue) {
         buildTheHtmlOutput += "<div class='col-3'>";
         buildTheHtmlOutput += '<div class = "stubImage" style="background-image: url(' + videosArrayValue.snippet.thumbnails.high.url + ')"></div>';
-        //        buildTheHtmlOutput += "<img class='stubImage'  src='" + videosArrayValue.snippet.thumbnails.high.url + "'/>"; //display video's thumbnail
         buildTheHtmlOutput += "<p class='results'>" + videosArrayValue.snippet.title + '</p>'; //output vide title
         buildTheHtmlOutput += "<form class ='selectVid '>";
+        buildTheHtmlOutput += "<input type='hidden' class='picValue' value='" + videosArrayValue.snippet.thumbnails.high.url + "'>";
         buildTheHtmlOutput += "<input type='hidden' class='title' value='" + videosArrayValue.snippet.title + "'>";
-        buildTheHtmlOutput += "<input type='hidden' class='vidURL' value='https://www.youtube.com/watch?v='" + videosArrayValue.id.videoId + "'>";
+        buildTheHtmlOutput += "<input type='hidden' class='vidURL' value='https://www.youtube.com/embed/" + videosArrayValue.id.videoId + "'>"
         buildTheHtmlOutput += '<button class="button selectButton" ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Select</button>';
         buildTheHtmlOutput += "</form>";
         buildTheHtmlOutput += "</div>";
     });
-    $("#searchResult").html(buildTheHtmlOutput);
+    $("#searchvidResult").html(buildTheHtmlOutput);
+
 }
 
 function callYouTube(subject, youTubeSearchApiUrl, myGoogleKey) {
@@ -69,7 +92,9 @@ function callYouTube(subject, youTubeSearchApiUrl, myGoogleKey) {
 
 };
 
-function previousNotesOut() {
+function previousNotesOut(data) {
+    console.log(data);
+
 
 }
 
@@ -85,19 +110,25 @@ function previousNotesOut() {
 $(function () {
     $('main').hide();
     $('.home-page').show();
+    $('.messageBox').hide();
 });
 $('#new-project').on('click', function () {
     $('main').hide();
-    $('.display-subject-page').show();
+    $('.new-proj').show();
 });
 $('#old-project').on('click', function () {
     $('main').hide();
     $('.display-subject-page').show();
 });
+$('#homeButton').on('click', function () {
+    $('main').hide();
+    $('.home-page').show();
+})
 
 $('#searchButton').on('click', function () {
 
     event.preventDefault();
+
     let searchString = $('#searchFor').val();
     //console.log('eventhandler fired: ' + searchString)
     $.ajax({
@@ -108,7 +139,7 @@ $('#searchButton').on('click', function () {
         })
         .done(function (result) {
             videoSearchOut(result);
-            console.log(result);
+            //console.log(result);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -120,27 +151,41 @@ $('#searchButton').on('click', function () {
 
 
 
-$(document).on('click', '.selectButton', function (event) {
+$(document).on('click', '.selectButton', function (event, selectedTitle, selectedVid, selectedPic) {
 
     event.preventDefault();
     var selectedVid = $(this).parent().find('.vidURL').val();
+    //console.log(selectedVid);
     var selectedTitle = $(this).parent().find('.title').val();
+    var selectedPic = $(this).parent().find('.picValue').val();
+    console.log(selectedPic);
+    displaysubjectpage(selectedVid, selectedTitle, selectedPic);
+    //console.log(selectedVid, selectedTitle);
 
-    console.log(selectedVid, selectedTitle);
-    displaysubjectpage(selectedVid, selectedTitle);
 
 
 });
 
-$('#saveNoteButton').on('click', function (selectedVid, selectedTitle, d) {
+$('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
+    //console.log('save fired');
+    selectedVid = $('#videoUrl').text();
+    selectedTitle = $('#videoTitle').text();
     var saveNote = $('#noteArea').val();
+    var thumbURL = $('#thumbpic').text()
+    x = new Date().getTime() / 1000;
+    d = unixTimestampInSecondsToAsiaDate(x);
+    //console.log(d);
+    displayError('Saved');
     newNote = {
         vidTitle: selectedTitle,
         vidUrl: selectedVid,
         date: d,
-        note: saveNote
+        note: saveNote,
+        vidPicUrl: thumbURL
 
     }
+    console.log(newNote);
+
 
     $.ajax({
             method: 'POST',
@@ -150,6 +195,7 @@ $('#saveNoteButton').on('click', function (selectedVid, selectedTitle, d) {
             url: '/younote/',
         })
         .done(function (result) {
+            $('#notification').html('<h2>Note Saved</h2>');
 
 
         })
@@ -159,3 +205,26 @@ $('#saveNoteButton').on('click', function (selectedVid, selectedTitle, d) {
             console.log(errorThrown);
         });
 });
+
+$('#old-project').on('click', function () {
+
+    $('main').hide();
+    $('.previous-proj').show();
+    $.ajax({
+            method: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/getyounote/',
+        })
+        .done(function (result) {
+            //console.log('done fired');
+            previousNotesOut(result);
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+
+})

@@ -1,24 +1,33 @@
 var mongoose = require('mongoose');
 
-var youSchema = new mongoose.Schema({
+var vidSchema = new mongoose.Schema({
 
-    videoId: {
-        type: string,
-        required: true
-    }
-    videoName: {
+    vidId: {
         type: String,
         required: true
     },
-    videoUrl: {
+    vidName: {
         type: String,
         required: true
+    },
+    vidDate: {
+        type: String,
+        required: true
+    },
+    videoNote: {
+        type: String,
+        required: true
+    },
+    vidPicUrl: {
+        type: String,
+        required: false
     }
+
 
 });
 
 
 
-var you = mongoose.model('you', youSchema);
+var vidNote = mongoose.model('vidNote', vidSchema);
 
-module.exports = you;
+module.exports = vidNote;

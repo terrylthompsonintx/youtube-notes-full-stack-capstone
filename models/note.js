@@ -1,15 +1,19 @@
 var mongoose = require('mongoose');
 
-var note = new mongoose.Schema({
+var noteSchema = new mongoose.Schema({
 
-videoId: {
-type: string,
-required:true
-}
-videoNote: {
-type: String,
-required: true
-},
+    videoId: {
+        type: String,
+        required: true
+    },
+    noteDate: {
+        type: String,
+        required: true
+    },
+    videoNote: {
+        type: String,
+        required: true
+    },
 
 
 });
