@@ -46,7 +46,7 @@ function videoSearchOut(data) {
     //console.log(data);
     var buildTheHtmlOutput = "";
     $.each(data.items, function (videosArrayKey, videosArrayValue) {
-        buildTheHtmlOutput += "<div class='col-3'>";
+        buildTheHtmlOutput += "<div class='col-3' >";
         buildTheHtmlOutput += '<div class = "stubImage" style="background-image: url(' + videosArrayValue.snippet.thumbnails.high.url + ')"></div>';
         buildTheHtmlOutput += "<p class='results'>" + videosArrayValue.snippet.title + '</p>'; //output vide title
         buildTheHtmlOutput += "<form class ='selectVid '>";
@@ -93,8 +93,30 @@ function callYouTube(subject, youTubeSearchApiUrl, myGoogleKey) {
 };
 
 function previousNotesOut(data) {
-    console.log(data);
 
+    //console.log(data, 'fired previous');
+    var oldProjHtml = "";
+    //console.log(data);
+
+
+    $.each(data, function (oldArrayKey, oldArrayValue) {
+        //console.log(oldArrayKey, oldArrayValue);
+        oldProjHtml += '<div class="col-3 oldcol" >';
+        oldProjHtml += '<form class = "oldProject">';
+        oldProjHtml += '<img src = "' + oldArrayValue.vidPicUrl + '" class="stubImage"><br>';
+        oldProjHtml += '<label>' + oldArrayValue.vidName + '</label><br>';
+        oldProjHtml += '<label>' + oldArrayValue.vidDate + '</label><br>';
+        oldProjHtml += '<input type="hidden" class="mongoId" value="' + oldArrayValue._id + '">';
+        oldProjHtml += '<p class = "note">' + oldArrayValue.videoNote + '</p>'
+        oldProjHtml += '<button class="button deleteButton" ><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>'
+        oldProjHtml += '<button class="button selectNoteButton" ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Select</button>'
+        oldProjHtml += '</form>';
+        oldProjHtml += '</div>';
+        //console.log(oldProjHtml);
+    });
+    //console.log(oldProjHtml);
+
+    $('#oldProjDisplay').html(oldProjHtml);
 
 }
 
@@ -130,6 +152,7 @@ $('#searchButton').on('click', function () {
     event.preventDefault();
 
     let searchString = $('#searchFor').val();
+    $('#searchFor').val('');
     //console.log('eventhandler fired: ' + searchString)
     $.ajax({
             method: 'GET',
@@ -149,7 +172,29 @@ $('#searchButton').on('click', function () {
 
 })
 
+$(document).on('click', '.deleteButton', function (event) {
+    event.preventDefault();
+    var deleteId = $(this).parent().find('.mongoId').val();
+    console.log(deleteId);
+    $.ajax({
+            method: 'DELETE',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/deletenote/' + deleteId,
+        })
+        .done(function (result) {
 
+            displayError('Note Deleted');
+            $(this).parent().find('oldcol').toggleClass('hidden');
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+
+});
 
 $(document).on('click', '.selectButton', function (event, selectedTitle, selectedVid, selectedPic) {
 
@@ -175,7 +220,7 @@ $('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
     x = new Date().getTime() / 1000;
     d = unixTimestampInSecondsToAsiaDate(x);
     //console.log(d);
-    displayError('Saved');
+
     newNote = {
         vidTitle: selectedTitle,
         vidUrl: selectedVid,
@@ -184,7 +229,7 @@ $('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
         vidPicUrl: thumbURL
 
     }
-    console.log(newNote);
+    //console.log(newNote);
 
 
     $.ajax({
@@ -195,7 +240,7 @@ $('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
             url: '/younote/',
         })
         .done(function (result) {
-            $('#notification').html('<h2>Note Saved</h2>');
+            displayError('Saved');
 
 
         })
@@ -211,20 +256,22 @@ $('#old-project').on('click', function () {
     $('main').hide();
     $('.previous-proj').show();
     $.ajax({
-            method: 'GET',
-            dataType: 'json',
-            contentType: 'application/json',
-            url: '/getyounote/',
-        })
-        .done(function (result) {
-            //console.log('done fired');
-            previousNotesOut(result);
+        method: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: '/getyounote/',
+    });
+    .done(function (result) {
 
-        })
-        .fail(function (jqXHR, error, errorThrown) {
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-        });
+
+        previousNotesOut(result);
+
+
+    });
+    .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    });
 
 })

@@ -152,6 +152,11 @@ footer {
     padding-top: 20px;
 }
 
+.title {
+    min-height: 20px;
+    max-height: 20px;
+}
+
 footer li img {
     width: auto;
     max-height: 30px;

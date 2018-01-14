@@ -20,7 +20,7 @@ var vidSchema = new mongoose.Schema({
     },
     vidPicUrl: {
         type: String,
-        required: false
+        required: true
     }
 
 

@@ -63,7 +63,7 @@ var getYouTube = function (searchTerm) {
     unirest.get("https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=12&key=AIzaSyCHXrCpLMW0YYC6gQeu1jPxZZDwJwPEW3c&q=" + searchTerm)
         .header("Accept", "application/json")
         .end(function (result) {
-            console.log(result.status, result.headers, result.body);
+            //console.log(result.status, result.headers, result.body);
             //success scenario
             if (result.ok) {
                 emitter.emit('end', result.body);
@@ -79,7 +79,7 @@ var getYouTube = function (searchTerm) {
 
 //routes
 app.get('/getyoutubedata/:search', function (req, res) {
-    console.log(req.params.search);
+    //console.log(req.params.search);
     var searchReq = getYouTube(req.params.search);
     searchReq.on('end', function (item) {
         res.json(item);
@@ -92,14 +92,14 @@ app.get('/getyoutubedata/:search', function (req, res) {
 })
 
 app.post('/younote/', (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
     vidNote.create({
         vidId: req.body.vidUrl,
         vidName: req.body.vidTitle,
         vidDate: req.body.date,
         videoNote: req.body.note,
-        vidPicUrl: req.body.pic
+        vidPicUrl: req.body.vidPicUrl
     }, function (err, item) {
         if (err) {
             return res.status(500).json({
@@ -115,7 +115,7 @@ app.post('/younote/', (req, res) => {
 app.get('/getyounote/', (req, res) => {
     //console.log(req + 'getfired');
     vidNote.find(function (err, item) {
-        console.log(item);
+        //console.log(item);
         if (err) {
             return res.status(500).json({
                 message: 'Internal Server Error'
@@ -127,7 +127,8 @@ app.get('/getyounote/', (req, res) => {
 });
 
 app.delete('/deletenote/:id', (req, res) => {
-    vidNote.findByIdAndRemove(req.params.vidId, function (err, items) {
+    console.log(req.params)
+    vidNote.findByIdAndRemove(req.params.id, function (err, items) {
         if (err)
             return res.status(404).json({
                 message: 'Item not found.'
