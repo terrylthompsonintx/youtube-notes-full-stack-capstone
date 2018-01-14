@@ -110,7 +110,19 @@ app.post('/younote/', (req, res) => {
     });
 });
 
+app.get('/getayounote/:id', (req, res) => {
+    console.log(req.params)
+    vidNote.findById(req.params.id, function (err, item) {
+        //console.log(item);
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.status(200).json(item);
 
+    });
+});
 
 app.get('/getyounote/', (req, res) => {
     //console.log(req + 'getfired');

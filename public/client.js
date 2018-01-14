@@ -42,6 +42,35 @@ function displaysubjectpage(selectedVid, selectedTitle, pic) {
 
 }
 
+function displayOldsubjectpage(vid) {
+
+    $('main').hide();
+    $('.old-proj').show();
+    console.log('displayOldsubjectpage');
+    var buildvidhtml = '';
+    var buildMoreHtml = '';
+    var buildNoteHtml = '';
+    var storedNotes = vid.vidDate + " " + vid.videoNote;
+    buildMoreHtml = '<h2 id="videoTitle"> ' + vid.VidName + '</h2>';
+
+    buildMoreHtml += '<h3 id="videoUrl"> ' + vid.vidId + '</h3>';
+
+    $("#subjectHeadOld").html(buildMoreHtml);
+    buildvidhtml += '<iframe width="100%" height="400px" src="' + vid.vidId + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+    $("#oldSearchReturn").html(buildvidhtml);;
+    buildNoteHtml += '<form>';
+    buildNoteHtml += '<input class="hidden" val="' + vid._id + '">';
+    buildNoteHtml += '<textarea id="editNote" >' + storedNotes + '</textarea>';
+    buildNoteHtml += '</form>';
+    $('youoldNoteaArea').html(buildNoteHtml);
+
+
+
+
+
+
+}
+
 function videoSearchOut(data) {
     //console.log(data);
     var buildTheHtmlOutput = "";
@@ -231,7 +260,6 @@ $('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
     }
     //console.log(newNote);
 
-
     $.ajax({
             method: 'POST',
             dataType: 'json',
@@ -256,22 +284,41 @@ $('#old-project').on('click', function () {
     $('main').hide();
     $('.previous-proj').show();
     $.ajax({
-        method: 'GET',
-        dataType: 'json',
-        contentType: 'application/json',
-        url: '/getyounote/',
-    });
-    .done(function (result) {
-
-
-        previousNotesOut(result);
-
-
-    });
-    .fail(function (jqXHR, error, errorThrown) {
-        console.log(jqXHR);
-        console.log(error);
-        console.log(errorThrown);
-    });
+            method: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/getyounote/',
+        })
+        .done(function (result) {
+            previousNotesOut(result);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        })
 
 })
+$(document).on('click', '.selectNoteButton', function (event, selectedTitle, selectedVid, selectedPic) {
+
+    event.preventDefault();
+    var selectedVid = $(this).parent().find('.mongoId').val();
+    console.log(selectedVid);
+    $.ajax({
+            method: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/getayounote/' + selectedVid,
+        })
+        .done(function (result) {
+            displayOldsubjectpage(result);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        })
+
+
+
+});
