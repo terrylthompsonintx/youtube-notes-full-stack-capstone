@@ -46,23 +46,29 @@ function displayOldsubjectpage(vid) {
 
     $('main').hide();
     $('.old-proj').show();
-    console.log('displayOldsubjectpage');
+    console.log(vid);
     var buildvidhtml = '';
     var buildMoreHtml = '';
     var buildNoteHtml = '';
     var storedNotes = vid.vidDate + " " + vid.videoNote;
-    buildMoreHtml = '<h2 id="videoTitle"> ' + vid.VidName + '</h2>';
+    buildMoreHtml = '<h2 id="videoTitle"> ' + vid.vidName + '</h2>';
 
     buildMoreHtml += '<h3 id="videoUrl"> ' + vid.vidId + '</h3>';
 
     $("#subjectHeadOld").html(buildMoreHtml);
-    buildvidhtml += '<iframe width="100%" height="400px" src="' + vid.vidId + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
-    $("#oldSearchReturn").html(buildvidhtml);;
-    buildNoteHtml += '<form>';
-    buildNoteHtml += '<input class="hidden" val="' + vid._id + '">';
-    buildNoteHtml += '<textarea id="editNote" >' + storedNotes + '</textarea>';
+    //    buildvidhtml += '<iframe width="100%" height="400px" src="' + vid.vidId + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+    //    $("#oldSearchReturn").html(buildvidhtml);
+    buildNoteHtml += '<form class="editForm">';
+    buildNoteHtml += '<input class="hidden" id="edId"  value="' + vid._id + '">';
+    buildNoteHtml += '<input  class="hidden" id="editUrl"  value="' + vid.vidId + '">';
+    buildNoteHtml += '<input class="hidden" id="editName" value="' + vid.vidName + '">';
+    buildNoteHtml += '<input class="hidden" id="edDate"  value="' + vid.vidDate + '">';
+    buildNoteHtml += '<input class="hidden" id="editPicUrl"  value="' + vid.vidPicUrl + '">';
+    buildNoteHtml += '<textarea id="editedNote" >' + storedNotes + '</textarea>';
+    buildNoteHtml += '<button id="saveoldNotebutton" class="button ctabutton" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>';
     buildNoteHtml += '</form>';
-    $('youoldNoteaArea').html(buildNoteHtml);
+    //console.log(buildNoteHtml);
+    $('#youoldNoteaArea').html(buildNoteHtml);
 
 
 
@@ -204,7 +210,7 @@ $('#searchButton').on('click', function () {
 $(document).on('click', '.deleteButton', function (event) {
     event.preventDefault();
     var deleteId = $(this).parent().find('.mongoId').val();
-    console.log(deleteId);
+    //console.log(deleteId);
     $.ajax({
             method: 'DELETE',
             dataType: 'json',
@@ -232,7 +238,7 @@ $(document).on('click', '.selectButton', function (event, selectedTitle, selecte
     //console.log(selectedVid);
     var selectedTitle = $(this).parent().find('.title').val();
     var selectedPic = $(this).parent().find('.picValue').val();
-    console.log(selectedPic);
+    //console.log(selectedPic);
     displaysubjectpage(selectedVid, selectedTitle, selectedPic);
     //console.log(selectedVid, selectedTitle);
 
@@ -303,7 +309,7 @@ $(document).on('click', '.selectNoteButton', function (event, selectedTitle, sel
 
     event.preventDefault();
     var selectedVid = $(this).parent().find('.mongoId').val();
-    console.log(selectedVid);
+    //console.log(selectedVid);
     $.ajax({
             method: 'GET',
             dataType: 'json',
@@ -312,6 +318,58 @@ $(document).on('click', '.selectNoteButton', function (event, selectedTitle, sel
         })
         .done(function (result) {
             displayOldsubjectpage(result);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        })
+
+
+
+});
+$(document).on('submit', '.editForm', function (event) {
+
+    event.preventDefault();
+    //var selectedVid = $(this).parent().find('.edId').val();
+    // var ednote = $(this).parent().find('.editedNote').val();
+    x = new Date().getTime() / 1000;
+    d = unixTimestampInSecondsToAsiaDate(x);
+
+    //    buildNoteHtml += '<form>';
+    //    buildNoteHtml += '<input class="hidden" id="edId"  val="' + vid._id + '">';
+    //    buildNoteHtml += '<input  class="hidden" id="editUrl"  val="' + vid.vidId + '">';
+    //    buildNoteHtml += '<input class="hidden" id="editName" val="' + vid.vidName + '">';
+    //    buildNoteHtml += '<input class="hidden" id="edDate"  val="' + vid.vidDate + '">';
+    //    buildNoteHtml += '<input class="hidden" id="editPicUrl"  val="' + vid.vidPicUrl + '">';
+    //    buildNoteHtml += '<textarea id="editedNote" >' + storedNotes + '</textarea>';
+    //    buildNoteHtml += '<button id="saveoldNotebutton" class="button ctabutton"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>';
+    //    buildNoteHtml += '</form>';
+    var inputmongoid = $(this).parent().find('#edId').val();
+
+    var inputvidTitle = $(this).parent().find('#editName').val();
+    var inputvidUrl = $(this).parent().find('#editUrl').val();
+    var inputnote = $(this).parent().find('#editedNote').val();
+    var inputvidPicUrl = $(this).parent().find('#editPicUrl').val();
+    let eNote = {
+        mongoeditId: inputmongoid,
+        vidTitle: inputvidTitle,
+        vidUrl: inputvidUrl,
+        date: d,
+        note: inputnote,
+        vidPicUrl: inputvidPicUrl
+
+    }
+    //console.log(eNote);
+    $.ajax({
+            method: 'PUT',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/putyounote/',
+            data: JSON.stringify(eNote)
+        })
+        .done(function (result) {
+            displayError('Saved');
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);

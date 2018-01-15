@@ -139,7 +139,7 @@ app.get('/getyounote/', (req, res) => {
 });
 
 app.delete('/deletenote/:id', (req, res) => {
-    console.log(req.params)
+    //console.log(req.params)
     vidNote.findByIdAndRemove(req.params.id, function (err, items) {
         if (err)
             return res.status(404).json({
@@ -152,7 +152,31 @@ app.delete('/deletenote/:id', (req, res) => {
 });
 
 
-app.put('/younote/:id', (req, res) => {
+app.put('/putyounote/', (req, res) => {
+
+    var mongoeditId = req.body.mongoeditId;
+    var vidTitle = req.body.vidTitle;
+    var vidUrl = req.body.vidUrl;
+    var date = req.body.date;
+    var note = req.body.note;
+    var vidPicUrl = req.body.vidPicUrl;
+
+    console.log(mongoeditId, vidTitle, vidUrl, date, note, vidPicUrl);
+    vidNote
+        .findByIdAndUpdate(mongoeditId, {
+            vidId: vidUrl,
+            vidName: vidTitle,
+            vidDate: date,
+            videoNote: note,
+            vidPicUrl: vidPicUrl
+        }).exec().then(function (achievement) {
+            return res.status(204).end();
+        }).catch(function (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        });
+
 
 });
 
