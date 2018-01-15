@@ -111,7 +111,7 @@ app.post('/younote/', (req, res) => {
 });
 
 app.get('/getayounote/:id', (req, res) => {
-    console.log(req.params)
+    //console.log(req.params)
     vidNote.findById(req.params.id, function (err, item) {
         //console.log(item);
         if (err) {
@@ -161,7 +161,7 @@ app.put('/putyounote/', (req, res) => {
     var note = req.body.note;
     var vidPicUrl = req.body.vidPicUrl;
 
-    console.log(mongoeditId, vidTitle, vidUrl, date, note, vidPicUrl);
+    //console.log(mongoeditId, vidTitle, vidUrl, date, note, vidPicUrl);
     vidNote
         .findByIdAndUpdate(mongoeditId, {
             vidId: vidUrl,

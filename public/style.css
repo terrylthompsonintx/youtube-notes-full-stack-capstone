@@ -22,7 +22,7 @@
 
 html {
     text-align: center;
-    background-color: #b7b7b7;
+    background-color: #6699FF;
     color: white;
     font-family: 'Muli', sans-serif;
 }
@@ -31,6 +31,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: 1000px;
+}
+
+button {
+    background-color: transparent;
 }
 
 header {
@@ -149,7 +153,7 @@ textarea {
 }
 
 footer {
-    padding-top: 20px;
+    padding-top: 10rem;
 }
 
 .title {
@@ -162,4 +166,20 @@ footer li img {
     max-height: 30px;
     border: 1px solid;
     border-radius: 5px;
+}
+
+.results {
+    min-height: 40px;
+    max-height: 40px;
+    overflow: auto;
+}
+
+.note {
+    min-height: 60px;
+    overflow: auto;
+    border: 1px;
+}
+
+.notelabel {
+    min-height: 50px;
 }
