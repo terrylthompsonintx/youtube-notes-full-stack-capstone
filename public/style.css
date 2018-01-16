@@ -45,7 +45,7 @@ header .messageBox {
     position: absolute;
     top: 0px;
     left: 40%;
-    background-color: #116466;
+    background-color: #353535;
     color: #fff;
     padding: 10px 5%;
     width: 30%;
@@ -182,4 +182,13 @@ footer li img {
 
 .notelabel {
     min-height: 50px;
+    max-height: 50px;
+    overflow: auto
+}
+
+#videoTitle,
+#info,
+#instruction {
+    margin: 20px;
+    font-size: 140%;
 }

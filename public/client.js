@@ -51,12 +51,14 @@ function displaysubjectpage(selectedVid, selectedTitle, pic) {
     var buildNote = '';
 
     buildSubjectHtml += '<h2 id="videoTitle"> ' + selectedTitle + '</h2>';
-    buildSubjectHtml += '<h3 id="videoUrl"> ' + selectedVid + '</h3>';
+    //buildSubjectHtml += '<h3 id="videoUrl"> ' + selectedVid + '</h3>';
     buildSubjectHtml += '<h4 id="thumbpic" class="hidden">' + pic + '</h4>';
     $("#subjectHead").html(buildSubjectHtml);
     buildvidhtml += '<iframe width="100%" height="400px" src="' + selectedVid + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+    buildvidhtml += '<button id="backButton2" class="button ctabutton" type="submit"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>';
     $("#viewSearchReturn").html(buildvidhtml);
-    buildNote += '<textarea id="noteArea" id="youNote" wrap="hard"></textarea><br>'
+    buildNote += '<textarea id="noteArea" id="youNote" wrap="hard"></textarea><br>';
+    buildNote += '<button id="saveNotebutton" class="button ctabutton"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>';
     $("#youNoteaArea").html(buildNote);
     displayError('View the video and take notes.  Click the Save button to save your notes.');
 
@@ -71,12 +73,15 @@ function displayOldsubjectpage(vid) {
     var buildMoreHtml = '';
     var buildNoteHtml = '';
     var storedNotes = vid.videoNote + " " + vid.vidDate;
-    buildMoreHtml = '<h2 id="videoTitle"> ' + vid.vidName + '</h2>';
+    buildMoreHtml = '<h2 id="videoTitle">' + vid.vidName + '</h2>';
 
-    buildMoreHtml += '<h3 id="videoUrl"> ' + vid.vidId + '</h3>';
+    //buildMoreHtml += '<h3 id="videoUrl"> ' + vid.vidId + '</h3>';
 
     $("#subjectHeadOld").html(buildMoreHtml);
+    buildvidhtml += '<form>';
     buildvidhtml += '<iframe width="100%" height="400px" src="' + vid.vidId + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+    buildvidhtml += '<button id="backButton" class="button ctabutton" type="submit"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>';
+    buildvidhtml += '</form>';
     $("#oldSearchReturn").html(buildvidhtml);
     buildNoteHtml += '<form class="editForm">';
     buildNoteHtml += '<input class="hidden" id="edId"  value="' + vid._id + '">';
@@ -114,7 +119,6 @@ function videoSearchOut(data) {
 
 }
 
-
 function previousNotesOut(data) {
 
     //console.log(data, 'fired previous');
@@ -145,13 +149,6 @@ function previousNotesOut(data) {
 }
 
 
-
-
-
-
-
-
-
 //Event Handlers
 $(function () {
     $('main').hide();
@@ -169,8 +166,19 @@ $('#old-project').on('click', function () {
 $('#homeButton').on('click', function () {
     $('main').hide();
     $('.home-page').show();
-})
-
+});
+$(document).on('click', '#backButton', function (event) {
+    event.preventDefault();
+    //console.log('fired');
+    $('.old-proj').hide();
+    $('.previous-proj').show();
+});
+$(document).on('click', '#backButton2', function (event) {
+    event.preventDefault();
+    //console.log('fired');
+    $('.display-subject-page').hide();
+    $('.new-proj').show();
+});
 $('#searchButton').on('click', function () {
 
     event.preventDefault();
@@ -195,7 +203,6 @@ $('#searchButton').on('click', function () {
         });
 
 })
-
 $(document).on('click', '.deleteButton', function (event) {
     event.preventDefault();
     var deleteId = $(this).parent().find('.mongoId').val();
@@ -220,7 +227,6 @@ $(document).on('click', '.deleteButton', function (event) {
     oldProjget();
 
 });
-
 $(document).on('click', '.selectButton', function (event, selectedTitle, selectedVid, selectedPic) {
 
     event.preventDefault();
@@ -235,7 +241,6 @@ $(document).on('click', '.selectButton', function (event, selectedTitle, selecte
 
 
 });
-
 $('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
     //console.log('save fired');
     selectedVid = $('#videoUrl').text();
@@ -274,11 +279,8 @@ $('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
             console.log(errorThrown);
         });
 });
-
 $('#old-project').on('click', function () {
     oldProjget();
-
-
 })
 $(document).on('click', '.selectNoteButton', function (event, selectedTitle, selectedVid, selectedPic) {
 
