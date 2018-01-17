@@ -1,5 +1,5 @@
 # react-fullstack-capstone.
-The purpose of this app is to view a video and take notes from YouTube.
+The purpose of this app is to view a video from Youtube and take notes.
 
 # MVP workflow
 * Intro screen.
@@ -30,12 +30,11 @@ The purpose of this app is to view a video and take notes from YouTube.
 
 
 ## Screenshots
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap1.png)
-![Account setup screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap2.png)
-![User homepage screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap3.png)
-![Achievement timeline screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap4.png)
-![Skills word cloud screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap5.png)
-![Skills word cloud screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/cap6.png)
+![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/landingpage.png)
+![New Project screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/search.png)
+![Screen for watching and taking notes](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/take-notes.png)
+![Selecting old project screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/oldproj.png)
+![Editing a previous note.](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/editnote.png)
 ## Working Prototype
 Find a working prototype with Node at https://youtube-notes-capstone.herokuapp.com/ and a working prototype with React at ??? .
 
@@ -68,7 +67,7 @@ Find a working prototype with Node at https://youtube-notes-capstone.herokuapp.c
 
 #### Responsive
 
-* The app is responsive and optimized for both desktop and mobile viewing and use
+* The app is responsive and optimized for both desktop and mobile viewing and use.
 
 
 ## API Documentation

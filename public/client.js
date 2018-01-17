@@ -135,7 +135,7 @@ function previousNotesOut(data) {
         oldProjHtml += '<label>' + oldArrayValue.vidDate + '</label><br>';
         oldProjHtml += '<input type="hidden" class="mongoId" value="' + oldArrayValue._id + '">';
         //oldProjHtml += '<p class = "note">' + oldArrayValue.videoNote + '</p>'
-        oldProjHtml += '<button class="button deleteButton ctabutton" ><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>'
+        oldProjHtml += '<button class="button deleteButton ctabutton" ><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>'
         oldProjHtml += '<button class="button selectNoteButton ctabutton" ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Select</button>'
         oldProjHtml += '</form>';
         oldProjHtml += '</div>';
