@@ -55,7 +55,7 @@ function displaysubjectpage(selectedVid, selectedTitle, pic) {
     buildSubjectHtml += '<h4 id="thumbpic" class="hidden">' + pic + '</h4>';
     $("#subjectHead").html(buildSubjectHtml);
     buildvidhtml += '<iframe width="100%" height="400px" src="' + selectedVid + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
-    buildvidhtml += '<button id="backButton2" class="button ctabutton" type="submit"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>';
+    buildvidhtml += '<button id="backButton2" class="button" type="submit"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>';
     $("#viewSearchReturn").html(buildvidhtml);
     buildNote += '<textarea id="noteArea" id="youNote" wrap="hard"></textarea><br>';
     buildNote += '<button id="saveNotebutton" class="button ctabutton"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>';
@@ -80,7 +80,7 @@ function displayOldsubjectpage(vid) {
     $("#subjectHeadOld").html(buildMoreHtml);
     buildvidhtml += '<form>';
     buildvidhtml += '<iframe width="100%" height="400px" src="' + vid.vidId + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
-    buildvidhtml += '<button id="backButton" class="button ctabutton" type="submit"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>';
+    buildvidhtml += '<button id="backButton" class="button" type="submit"><i class="fa fa-backward" aria-hidden="true"></i> Back</button>';
     buildvidhtml += '</form>';
     $("#oldSearchReturn").html(buildvidhtml);
     buildNoteHtml += '<form class="editForm">';
@@ -135,7 +135,7 @@ function previousNotesOut(data) {
         oldProjHtml += '<label>' + oldArrayValue.vidDate + '</label><br>';
         oldProjHtml += '<input type="hidden" class="mongoId" value="' + oldArrayValue._id + '">';
         //oldProjHtml += '<p class = "note">' + oldArrayValue.videoNote + '</p>'
-        oldProjHtml += '<button class="button deleteButton ctabutton" ><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>'
+        oldProjHtml += '<button class="button deleteButton" ><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>'
         oldProjHtml += '<button class="button selectNoteButton ctabutton" ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Select</button>'
         oldProjHtml += '</form>';
         oldProjHtml += '</div>';
