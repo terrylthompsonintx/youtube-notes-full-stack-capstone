@@ -51,7 +51,7 @@ function displaysubjectpage(selectedVid, selectedTitle, pic) {
     var buildNote = '';
 
     buildSubjectHtml += '<h2 id="videoTitle"> ' + selectedTitle + '</h2>';
-    //buildSubjectHtml += '<h3 id="videoUrl"> ' + selectedVid + '</h3>';
+    buildSubjectHtml += '<h3 id="videoUrl" class="hidden"> ' + selectedVid + '</h3>';
     buildSubjectHtml += '<h4 id="thumbpic" class="hidden">' + pic + '</h4>';
     $("#subjectHead").html(buildSubjectHtml);
     buildvidhtml += '<iframe width="100%" height="400px" src="' + selectedVid + '"frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
@@ -75,7 +75,7 @@ function displayOldsubjectpage(vid) {
     var storedNotes = vid.videoNote + " " + vid.vidDate;
     buildMoreHtml = '<h2 id="videoTitle">' + vid.vidName + '</h2>';
 
-    //buildMoreHtml += '<h3 id="videoUrl"> ' + vid.vidId + '</h3>';
+    buildMoreHtml += '<h3 class ="hidden" id="videoUrl"> ' + vid.vidId + '</h3>';
 
     $("#subjectHeadOld").html(buildMoreHtml);
     buildvidhtml += '<form>';
@@ -241,8 +241,8 @@ $(document).on('click', '.selectButton', function (event, selectedTitle, selecte
 
 
 });
-$('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
-    //console.log('save fired');
+$(document).on('click', '#saveNotebutton', function (selectedVid, selectedTitle, d) {
+    console.log('save fired');
     selectedVid = $('#videoUrl').text();
     selectedTitle = $('#videoTitle').text();
     var saveNote = $('#noteArea').val();
@@ -259,7 +259,7 @@ $('#saveNotebutton').on('click', function (selectedVid, selectedTitle, d) {
         vidPicUrl: thumbURL
 
     }
-    //console.log(newNote);
+    console.log(newNote);
 
     $.ajax({
             method: 'POST',
