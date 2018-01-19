@@ -3,11 +3,13 @@ const morgan = require('morgan');
 var unirest = require('unirest');
 var events = require('events');
 const mongoose = require('mongoose');
+const cors = require('cors');
 var config = require('./config');
 const app = express();
 app.use(express.static('public'));
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(cors());
 var vidNote = require('./models/younote');
 
 
