@@ -30,11 +30,11 @@ The purpose of this app is to view a video from Youtube and take notes.
 
 
 ## Screenshots
-![Landing page screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/landingpage.png)
-![New Project screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/search.png)
-![Screen for watching and taking notes](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/take-notes.png)
-![Selecting old project screen shot](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/oldproj.png)
-![Editing a previous note.](https://github.com/terrylthompsonintx/shopping-list-full-stack-capstone/blob/master/github-images/editnote.png)
+![Landing page screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/landingpage.png)
+![New Project screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/search.png)
+![Screen for watching and taking notes](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/take-notes.png)
+![Selecting old project screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/oldproj.png)
+![Editing a previous note.](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/editnote.png)
 ## Working Prototype
 Find a working prototype with Node at https://youtube-notes-capstone.herokuapp.com/ and a working prototype with React at ??? .
 
