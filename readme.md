@@ -36,7 +36,7 @@ The purpose of this app is to view a video from Youtube and take notes.
 ![Selecting old project screen shot](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/oldproj.png)
 ![Editing a previous note.](https://github.com/terrylthompsonintx/youtube-notes-full-stack-capstone/blob/master/github-images/editnote.png)
 ## Working Prototype
-Find a working prototype with Node at https://youtube-notes-capstone.herokuapp.com/ and a working prototype with React at ??? .
+Find a working prototype with Node at https://youtube-notes-capstone.herokuapp.com/ and a working prototype with React at https://terrylthompsonintx.github.io/youtube-notes-full-stack-capstone-react/build.
 
 ## Functionality
 * When the user brings up the landing page and it explains the pupose of the app.
