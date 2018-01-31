@@ -111,7 +111,22 @@ app.post('/younote/', (req, res) => {
         res.status(201).json(item);
     });
 });
+app.get('/checkyounote/:id', (req, res) => {
+    console.log (req.params.id);
+    var constructedUrl = " https://www.youtube.com/embed/" + req.params.id;
+    console.log (constructedUrl);
+    vidNote.findOne({"vidId":constructedUrl}, function (err, item) {
+        console.log(item);
+        if ((err)||(item==null)) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.status(200).json(item);
 
+    });
+
+});
 app.get('/getayounote/:id', (req, res) => {
     //console.log(req.params)
     vidNote.findById(req.params.id, function (err, item) {
@@ -152,7 +167,6 @@ app.delete('/deletenote/:id', (req, res) => {
     });
 
 });
-
 
 app.put('/putyounote/', (req, res) => {
 

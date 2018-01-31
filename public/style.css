@@ -105,7 +105,7 @@ a:hover {
 
 footer li {
     display: inline-block;
-    text-decoration: none''
+    text-decoration: none;
 }
 
 img {
@@ -123,7 +123,6 @@ img {
     outline: none;
     border: none;
     border-radius: 0;
-    box-shadow: 0px 0px 20px #999;
     background-repeat: repeat-x;
     background-position: center;
     font-size: 120%;
@@ -166,6 +165,8 @@ footer li img {
     max-height: 30px;
     border: 1px solid;
     border-radius: 5px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .results {

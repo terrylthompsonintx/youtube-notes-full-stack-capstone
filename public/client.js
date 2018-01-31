@@ -109,7 +109,8 @@ function videoSearchOut(data) {
         buildTheHtmlOutput += "<p class='results'>" + videosArrayValue.snippet.title + '</p>'; //output vide title
         buildTheHtmlOutput += "<input type='hidden' class='picValue' value='" + videosArrayValue.snippet.thumbnails.high.url + "'>";
         buildTheHtmlOutput += "<input type='hidden' class='title' value='" + videosArrayValue.snippet.title + "'>";
-        buildTheHtmlOutput += "<input type='hidden' class='vidURL' value='https://www.youtube.com/embed/" + videosArrayValue.id.videoId + "'>"
+        buildTheHtmlOutput += "<input type='hidden' class='vidURL' value='https://www.youtube.com/embed/" + videosArrayValue.id.videoId + "'>";
+        buildTheHtmlOutput += "<input type='hidden' class='vidId' value='" + videosArrayValue.id.videoId + "'>";
         buildTheHtmlOutput += '<button class="button selectButton ctabutton" ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Select</button>';
         buildTheHtmlOutput += "</form>";
         buildTheHtmlOutput += "</div>";
@@ -184,6 +185,7 @@ $('#searchButton').on('click', function () {
     event.preventDefault();
 
     let searchString = $('#searchFor').val();
+    displayError('Searching Youtube');
     $('#searchFor').val('');
     //console.log('eventhandler fired: ' + searchString)
     $.ajax({
@@ -230,19 +232,39 @@ $(document).on('click', '.deleteButton', function (event) {
 $(document).on('click', '.selectButton', function (event, selectedTitle, selectedVid, selectedPic) {
 
     event.preventDefault();
+
+
     var selectedVid = $(this).parent().find('.vidURL').val();
+    var selectedVidId = $(this).parent().find('.vidId').val();
+
     //console.log(selectedVid);
     var selectedTitle = $(this).parent().find('.title').val();
     var selectedPic = $(this).parent().find('.picValue').val();
-    //console.log(selectedPic);
-    displaysubjectpage(selectedVid, selectedTitle, selectedPic);
+    console.log(selectedVidId);
+    $.ajax({
+        method: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: '/checkyounote/' + selectedVidId,
+    })
+        .done(function (result) {
+        console.log(result);
+        displayError ('Project exists.  Go to old projects.');
+
+        //videoSearchOut(result);
+        //console.log(result);
+    })
+        .fail(function (jqXHR, error, errorThrown) {
+        displaysubjectpage(selectedVid, selectedTitle, selectedPic);
+    });
+
     //console.log(selectedVid, selectedTitle);
 
 
 
 });
 $(document).on('click', '#saveNotebutton', function (selectedVid, selectedTitle, d) {
-    console.log('save fired');
+    //console.log('save fired');
     selectedVid = $('#videoUrl').text();
     selectedTitle = $('#videoTitle').text();
     var saveNote = $('#noteArea').val();
@@ -259,7 +281,7 @@ $(document).on('click', '#saveNotebutton', function (selectedVid, selectedTitle,
         vidPicUrl: thumbURL
 
     }
-    console.log(newNote);
+    //console.log(newNote);
 
     $.ajax({
             method: 'POST',
